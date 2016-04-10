@@ -1,0 +1,3 @@
+[submodule "mptt_tree_view/static/js/jquery-sortable-lists"]
+	path = mptt_tree_view/static/js/jquery-sortable-lists
+	url = https://github.com/camohub/jquery-sortable-lists.git
