@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load mptt_tags %}
+{% load get_item %}
+{% load static %}
+{% block container %}
+<script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'csrf.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-sortable-lists/jquery-sortable-lists.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/checklist.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-sortable-lists.css' %}" />
+<div class="cf nestable-lists">
+    <div id="tree-list" class="">
+        <ul id="item-list" pk="{{root_pk}}" class="">
+            {% recursetree nodes %}
+                <li pk="{{node.pk}}" class="no-drag" item-order="{{node.get_order}}">
+                        <div class=""></div>
+                        <div class="item-box">
+                            {% block item_box %}
+                            {{node}}
+                            {% endblock %}
+                            <span class="delete-item no-drag">-</span>
+                            <span class="add-child no-drag">+</span>
+                            </span>
+                        </div>
+                    {% if not node.is_leaf_node %}
+                        <ul class="" pk="{{node.pk}}">
+                            {{ children }}
+                            <li class="" >
+                                <div class=" "></div>
+                                <div class="no-drag">
+                                    <span class="item-content"></span>
+                                    <span class="add-item no-drag">+</span>
+                                </div>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endrecursetree %}
+            <li class="" >
+                <div class=" "></div>
+                <div class="no-drag">
+                    <span class="item-content"></span>
+                    <span class="add-item no-drag">+</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="/static/js/tree_editor.js"></script>
+<script src="/static/js/checklist.js"></script>
+{% endblock %}
