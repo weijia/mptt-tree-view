@@ -1,5 +1,7 @@
 $.widget( "mptt.mpttAjax", {
-
+    options: {
+        restUrl: "/checklist/checklist_list/",
+    },
     createItemOnServer: function(contentElem) {
         var parentPk = $(contentElem.parents("ul")[0]).attr("pk");
         var text = contentElem.text();

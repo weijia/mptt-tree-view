@@ -21,4 +21,3 @@ var options = {
     hintCss: {'background-color':'green', 'border':'1px dashed white'}
 }
 $('#item-list').sortableLists( options );
-$('#item-list').mpttAjax();
