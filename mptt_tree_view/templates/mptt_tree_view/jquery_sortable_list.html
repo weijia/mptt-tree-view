@@ -12,7 +12,7 @@
     <div id="tree-list" class="">
         <ul id="item-list" pk="{{root_pk}}" class="">
             {% recursetree nodes %}
-                <li pk="{{ node.pk }}" class="no-drag" item-order="{{ node.get_order }}"
+                <li pk="{{ node.pk }}" item-order="{{ node.get_order }}"
                     parent="{{ node.parent }}">
                         <div class=""></div>
                         <div class="item-box">
@@ -35,6 +35,7 @@
     </div>
 </div>
 
-<script src="/static/js/jquery_sortable_list_for_mptt_tree.js">
-</script>
+
+<script type="text/javascript" src="{% static 'js/mptt_ajax.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery_sortable_list_for_mptt_tree.js' %}"></script>
 {% endblock %}
