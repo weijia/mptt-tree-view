@@ -13,7 +13,7 @@
         <ul id="item-list" pk="{{root_pk}}" class="">
             {% recursetree nodes %}
                 <li pk="{{ node.pk }}" item-order="{{ node.get_order }}"
-                    parent="{{ node.parent }}">
+                    parent="{{ node.parent.pk }}">
                         <div class=""></div>
                         <div class="item-box">
                             {% block item_box %}

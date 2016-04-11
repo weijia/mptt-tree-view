@@ -13,7 +13,7 @@ $.widget( "mptt.mpttAjax", {
         }
         var itemOrder = this.getLi(contentElem).attr("item-order");
         if(parentPk=="-1"){
-            parentPk="None";
+            parentPk=null;
         }
         $.post(this.options.restUrl, {parent:parentPk, content:text, item_order: itemOrder}, function(result){
             liElem.attr("pk", result.id)});
@@ -46,7 +46,9 @@ $.widget( "mptt.mpttAjax", {
     },
 
     updateParent: function(itemPk, parentPk){
-        if(parentPk=="-1") parentPk="None";
         this.updateItem(itemPk, {"parent": parentPk});
+    },
+    setParentAsNull: function(itemPk){
+        this.updateParent(itemPk, null);
     },
 });

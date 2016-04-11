@@ -10,9 +10,15 @@ var options = {
             else{
                 parentPk = $(curLi.parents("li")[0]).attr("pk");
             }
-            if(parentPk=="-1") parentPk="None";
-            if(parentPk!=curLi.attr("parent")){
-                $("#item-list").mpttAjax('updateParent', currEl.attr("pk"), parentPk);
+            if(parentPk=="-1"){
+                if(curLi.attr("parent")!="None"){
+                    $("#item-list").mpttAjax('setParentAsNull', currEl.attr("pk"));
+                }
+            }
+            else{
+                if(parentPk!=curLi.attr("parent")){
+                    $("#item-list").mpttAjax('updateParent', currEl.attr("pk"), parentPk);
+                }
             }
         },
 
