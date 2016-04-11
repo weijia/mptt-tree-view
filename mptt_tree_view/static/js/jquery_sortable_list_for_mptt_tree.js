@@ -2,8 +2,14 @@ var options = {
     complete: function(currEl){
 
             console.log(currEl);
+            var parentPk = null;
             var curLi = currEl;//parseInt($(currEl.parents("li")[0])
-            var parentPk = $(curLi.parents("li")[0]).attr("pk");
+            if($(curLi.parents("ul")[0]).attr("pk")){
+                parentPk = $(curLi.parents("ul")[0]).attr("pk");
+            }
+            else{
+                parentPk = $(curLi.parents("li")[0]).attr("pk");
+            }
             if(parentPk=="-1") parentPk="None";
             if(parentPk!=curLi.attr("parent")){
                 $("#item-list").mpttAjax('updateParent', currEl.attr("pk"), parentPk);
