@@ -11,14 +11,14 @@ class TreeView(TemplateView):
     def __init__(self, **kwargs):
         super(TreeView, self).__init__(**kwargs)
         self.tree_items = None
-        self.root_pk = -1
+        self.root_pk = ""
 
     def get_context_data(self, **kwargs):
         # context = super(AddTagTemplateView, self).get_context_data(**kwargs)
         context = {}
         self.init_tree_items()
         self.get_final_query_set()
-        c = {"user": self.request.user, "nodes": self.tree_items, "root_pk": -1}
+        c = {"user": self.request.user, "nodes": self.tree_items, "root_pk": self.root_pk}
         c.update(csrf(self.request))
         context.update(c)
         # log = logging.getLogger(__name__)

@@ -12,7 +12,7 @@ $.widget( "mptt.mpttAjax", {
             return;
         }
         var itemOrder = this.getLi(contentElem).attr("item-order");
-        if(parentPk=="-1"){
+        if(parentPk=="None"){
             parentPk=null;
         }
         $.post(this.options.restUrl, {parent:parentPk, content:text, item_order: itemOrder}, function(result){
@@ -34,7 +34,7 @@ $.widget( "mptt.mpttAjax", {
         return this.options.restUrl+itemPk+"/";
     },
 
-    updateItem: function(itemPk, data){
+    updateItem: function(itemPk, data, callback){
         $.ajax({
           url : this.getItemUpdateUrl(itemPk),
           data : JSON.stringify(data),
@@ -42,13 +42,13 @@ $.widget( "mptt.mpttAjax", {
           contentType : 'application/json',
           processData: false,
           dataType: 'json'
-        });
+        }).done(function(){callback();});
     },
 
-    updateParent: function(itemPk, parentPk){
-        this.updateItem(itemPk, {"parent": parentPk});
+    updateParent: function(itemPk, parentPk, callback){
+        this.updateItem(itemPk, {"parent": parentPk}, callback);
     },
-    setParentAsNull: function(itemPk){
-        this.updateParent(itemPk, null);
+    setParentAsNull: function(itemPk, callback){
+        this.updateParent(itemPk, null, callback);
     },
 });
