@@ -14,8 +14,8 @@
             {% recursetree nodes %}
                 <li pk="{{ node.pk }}" item-order="{{ node.get_order }}"
                     parent="{{ node.parent.pk }}">
-                        <div class=""></div>
-                        <div class="item-box">
+                        <div class="handle"></div>
+                        <div class="item-box no-drag">
                             {% block item_box %}
                             {{node}}
                             {% endblock %}

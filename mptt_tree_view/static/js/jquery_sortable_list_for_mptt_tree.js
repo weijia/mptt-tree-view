@@ -4,6 +4,8 @@ var options = {
             console.log(currEl);
             var parentPk = null;
             var curLi = currEl;//parseInt($(currEl.parents("li")[0])
+
+            //if("") is a false condition.
             if($(curLi.parents("ul")[0]).attr("pk")==""||$(curLi.parents("ul")[0]).attr("pk")){
                 parentPk = $(curLi.parents("ul")[0]).attr("pk");
             }
