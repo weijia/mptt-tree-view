@@ -2,21 +2,9 @@ $.widget( "mptt.mpttAjax", {
     options: {
         restUrl: "/checklist/checklist_list/",
     },
-    createItemOnServer: function(contentElem) {
-        var parentPk = $(contentElem.parents("ul")[0]).attr("pk");
-        var text = contentElem.text();
-        var thisWidget = this;
-        var liElem = this.getLi(contentElem);
-        if(text==""){
-            liElem.remove();
-            return;
-        }
-        var itemOrder = this.getLi(contentElem).attr("item-order");
-        if(parentPk=="None"){
-            parentPk=null;
-        }
+    createItemOnServer: function(parentPk, text, itemOrder, callback) {
         $.post(this.options.restUrl, {parent:parentPk, content:text, item_order: itemOrder}, function(result){
-            liElem.attr("pk", result.id)});
+            if(callback)callback();});
     },
 
     ajaxReq: function(type, pk, data){
