@@ -2,5 +2,5 @@
 
 INSTALLED_APPS += (
     'mptt',
-    'django_mptt_admin',
+    # 'django_mptt_admin',
 )
