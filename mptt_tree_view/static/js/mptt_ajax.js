@@ -4,7 +4,7 @@ $.widget( "mptt.mpttAjax", {
     },
     createItemOnServer: function(parentPk, text, itemOrder, callback) {
         $.post(this.options.restUrl, {parent:parentPk, content:text, item_order: itemOrder}, function(result){
-            if(callback)callback();});
+            if(callback)callback(result);});
     },
 
     ajaxReq: function(type, pk, data){
@@ -30,7 +30,7 @@ $.widget( "mptt.mpttAjax", {
           contentType : 'application/json',
           processData: false,
           dataType: 'json'
-        }).done(function(){callback();});
+        }).done(function(result){if(callback) callback(result);});
     },
 
     updateParent: function(itemPk, parentPk, callback){

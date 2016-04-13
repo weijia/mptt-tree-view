@@ -14,7 +14,7 @@ $.widget( "tree_editor.treeEditor", {
     */
     options: {
         liHtml: '<li pk="-1" item-order="-1" parent="-1">'+
-                    '<div class="dd3-handle">"Drag"</div>' +
+                    '<div class="dd3-handle handle-box">"Drag"</div>' +
                     '<div class="item-box no-drag">'+
                     '</div>'+
                 '</li>',
@@ -31,10 +31,11 @@ $.widget( "tree_editor.treeEditor", {
         this.options.onChildAdded(child)
     },
 
-    insertChildBefore: function(li){
+    insertChildBefore: function(li, callback){
         var child = $(this.options.liHtml);
         li.before(child);
-        this.options.onChildAdded(child)
+//        this.options.onChildAdded(child);
+        if(callback) callback(child);
     },
 
     getLi: function(elemInLi){
