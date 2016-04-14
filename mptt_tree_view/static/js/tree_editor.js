@@ -25,16 +25,15 @@ $.widget( "tree_editor.treeEditor", {
         return $(".item-content", liElem);
     },
 
-    appendChild: function(parentUl){
+    appendChild: function(parentUl, callback){
         var child = $(this.options.liHtml);
         parentUl.append(child);
-        this.options.onChildAdded(child)
+        if(callback) callback(child);
     },
 
     insertChildBefore: function(li, callback){
         var child = $(this.options.liHtml);
         li.before(child);
-//        this.options.onChildAdded(child);
         if(callback) callback(child);
     },
 
