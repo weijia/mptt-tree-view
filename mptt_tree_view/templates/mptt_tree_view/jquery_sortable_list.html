@@ -9,8 +9,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/checklist.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-sortable-lists.css' %}" />
 <div class="cf nestable-lists">
-    <div class="tree-list" class="">
-        <ul class="tree-root-ul" pk="{{root_pk}}" class="">
+    <div class="tree-list">
+        <ul class="tree-root-ul" pk="{{root_pk}}">
             {% recursetree nodes %}
                 <li pk="{{ node.pk }}" item-order="{{ node.get_order }}"
                     parent="{{ node.parent.pk }}">

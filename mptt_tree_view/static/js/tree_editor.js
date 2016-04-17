@@ -42,6 +42,5 @@ $.widget( "tree_editor.treeEditor", {
     },
 
     _create: function() {
-        var thisWidget = this;
     }
 });
