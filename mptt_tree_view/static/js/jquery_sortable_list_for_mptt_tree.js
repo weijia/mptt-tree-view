@@ -31,3 +31,4 @@ var options = {
     hintCss: {'background-color':'green', 'border':'1px dashed white'}
 }
 $('.tree-list').sortableLists( options );
+$(".tree-root-ul").mpttAjax({});
