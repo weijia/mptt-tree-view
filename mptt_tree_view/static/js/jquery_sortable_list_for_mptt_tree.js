@@ -14,7 +14,7 @@ var options = {
             }
 
             if(parentPk!=curLi.attr("parent")){
-                $("#item-list").mpttAjax('updateParent', currEl.attr("pk"), parentPk, function(){
+                $(".tree-root-ul").mpttAjax('updateParent', currEl.attr("pk"), parentPk, function(){
                     currEl.attr("parent", parentPk);
                 });
             }
@@ -30,4 +30,4 @@ var options = {
     // or like a jQuery css object
     hintCss: {'background-color':'green', 'border':'1px dashed white'}
 }
-$('#item-list').sortableLists( options );
+$('.tree-list').sortableLists( options );
