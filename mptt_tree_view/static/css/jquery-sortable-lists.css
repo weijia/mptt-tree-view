@@ -1,4 +1,4 @@
-#tree-list {
+.tree-list {
     position: relative;
     display: block;
     margin: 0;
@@ -8,11 +8,11 @@
     line-height: 20px;
  }
 
-#tree-list li { list-style-type: none;
+.tree-list li { list-style-type: none;
 padding-left: 2.0em;
  position: relative; /* used for internal absolute position children */
 }
-#tree-list li div.item-box {
+.tree-list li div.item-box {
     height: 30px;
     display: block;
     height: 30px;
