@@ -42,7 +42,8 @@ class TreeView(TemplateView):
             try:
                 return int(data["level"])
             except:
-                return self.default_level
+                pass
+        return self.default_level
 
     def get_children(self, root_pk):
         root = self.item_class.objects.filter(pk=root_pk)
