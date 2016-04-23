@@ -34,10 +34,18 @@ class TreeView(TemplateView):
             self.root_pk = data["root"]
             self.tree_items = self.get_children(self.root_pk)
         else:
-            self.tree_items = self.item_class.objects.filter(level__lt=self.default_level)
+            self.tree_items = self.item_class.objects.filter(level__lt=self.get_level())
+
+    def get_level(self):
+        data = retrieve_param(self.request)
+        if "level" in data:
+            try:
+                return int(data["level"])
+            except:
+                return self.default_level
 
     def get_children(self, root_pk):
         root = self.item_class.objects.filter(pk=root_pk)
         tree_items = self.item_class.objects.get_queryset_descendants(root).filter(
-                level__lt=root[0].level + self.default_level + 1)
+                level__lt=root[0].level + self.get_level() + 1)
         return tree_items
