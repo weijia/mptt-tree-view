@@ -2,12 +2,20 @@
 {% load mptt_tags %}
 {% load get_item %}
 {% load static %}
+
+{% block js %}
+    {{ block.super }}
+    <!--<script type='text/javascript' src="{% static 'js/jquery.js' %}"></script>-->
+    <!--<link rel="stylesheet" href="{% static 'tree.css'%}" type="text/css">-->
+    <script type='text/javascript' src="{% static 'js/jquery-ui.js' %}"></script>
+    <script type='text/javascript' src="{% static 'csrf.js' %}"></script>
+    <script type="text/javascript"
+            src="{% static 'js/jquery-sortable-lists/jquery-sortable-lists.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/checklist.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-sortable-lists.css' %}" />
+{% endblock %}
+
 {% block container %}
-<script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
-<script type="text/javascript" src="{% static 'csrf.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery-sortable-lists/jquery-sortable-lists.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'css/checklist.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-sortable-lists.css' %}" />
 <div class="cf nestable-lists">
     <div class="tree-list">
         <ul class="tree-root-ul" pk="{{root_pk}}">
