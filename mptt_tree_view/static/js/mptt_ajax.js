@@ -1,6 +1,6 @@
 $.widget( "mptt.mpttAjax", {
     options: {
-        restUrl: "/checklist/checklist_list/",
+        restUrl: "/checklist/rest_api/checklist_tree_item/",
     },
     createItemOnServer: function(parentPk, text, itemOrder, callback) {
         $.post(this.options.restUrl, {parent:parentPk, content:text, item_order: itemOrder}, function(result){
