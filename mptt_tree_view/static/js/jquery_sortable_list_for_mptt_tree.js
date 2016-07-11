@@ -1,34 +1,41 @@
-var options = {
-    complete: function(currEl){
+$.widget( "mptt_tree_view.mpttTreeView", {
 
-            console.log(currEl);
-            var parentPk = null;
-            var curLi = currEl;//parseInt($(currEl.parents("li")[0])
+    options: {
+        restUrl: "/checklist/checklist_list/",
+    },
 
-            //if("") is a false condition.
-            if($(curLi.parents("ul")[0]).attr("pk")==""||$(curLi.parents("ul")[0]).attr("pk")){
-                parentPk = $(curLi.parents("ul")[0]).attr("pk");
-            }
-            else{
-                parentPk = $(curLi.parents("li")[0]).attr("pk");
-            }
+    _create: function() {
+        var sortableListsOption = {
+            complete: function(currEl){
+                console.log(currEl);
+                var parentPk = null;
+                var curLi = currEl;//parseInt($(currEl.parents("li")[0])
 
-            if(parentPk!=curLi.attr("parent")){
-                $(".tree-root-ul").mpttAjax('updateParent', currEl.attr("pk"), parentPk, function(){
-                    currEl.attr("parent", parentPk);
-                });
-            }
-        },
+                //if("") is a false condition.
+                if($(curLi.parents("ul")[0]).attr("pk")==""||$(curLi.parents("ul")[0]).attr("pk")){
+                    parentPk = $(curLi.parents("ul")[0]).attr("pk");
+                }
+                else{
+                    parentPk = $(curLi.parents("li")[0]).attr("pk");
+                }
 
-
-    // All elements with class clickable will be clickable
-    ignoreClass: 'no-drag',
-    placeholderClass: 'placeholderClass',
-    // or like a jQuery css object
-    placeholderCss: {'background-color':'yellow'},
-    hintClass: 'hintClass',
-    // or like a jQuery css object
-    hintCss: {'background-color':'green', 'border':'1px dashed white'}
-}
-$('.tree-list').sortableLists( options );
-$(".tree-root-ul").mpttAjax({});
+                if(parentPk!=curLi.attr("parent")){
+                    $(".tree-root-ul", this.element).mpttAjax('updateParent', currEl.attr("pk"), parentPk,
+                    function(){
+                        currEl.attr("parent", parentPk);
+                    });
+                }
+            },
+            // All elements with class clickable will be clickable
+            ignoreClass: 'no-drag',
+            placeholderClass: 'placeholderClass',
+            // or like a jQuery css object
+            placeholderCss: {'background-color':'yellow'},
+            hintClass: 'hintClass',
+            // or like a jQuery css object
+            hintCss: {'background-color':'green', 'border':'1px dashed white'}
+        }
+        this.element.sortableLists( sortableListsOption );
+        $(".tree-root-ul", this.element).mpttAjax( {restUrl: this.options.restUrl} );
+    }
+});

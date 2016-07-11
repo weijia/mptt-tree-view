@@ -45,4 +45,9 @@
 
 <script type="text/javascript" src="{% static 'js/mptt_ajax.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery_sortable_list_for_mptt_tree.js' %}"></script>
+  {% block register_drag_drop_handler %}
+    <script>
+      $(".tree-list").mpttTreeView({});
+    </script>
+  {% endblock %}
 {% endblock %}
