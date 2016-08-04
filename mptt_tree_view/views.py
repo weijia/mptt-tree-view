@@ -7,6 +7,7 @@ from djangoautoconf.django_utils import retrieve_param
 class TreeView(TemplateView):
     item_class = None
     default_level = 2
+    template_name = "mptt_tree_view/jquery_sortable_list.html"
 
     def __init__(self, **kwargs):
         super(TreeView, self).__init__(**kwargs)
