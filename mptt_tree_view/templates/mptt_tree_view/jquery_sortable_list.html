@@ -24,7 +24,9 @@
                         <div class="dd3-handle handle-box">"Drag"</div>
                         <div class="item-box no-drag">
                             {% block item_box %}
-                            {{node}}
+                                <a href="{{request.base_url}}?root={{node.parent.pk}}" class="tagged-item no-drag">
+                                  {{ node }}
+                                </a>
                             {% endblock %}
                         </div>
                     {% if not node.is_leaf_node %}
