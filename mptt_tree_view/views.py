@@ -48,6 +48,6 @@ class TreeView(TemplateView):
 
     def get_children(self, root_pk):
         root = self.item_class.objects.filter(pk=root_pk)
-        tree_items = self.item_class.objects.get_queryset_descendants(root).filter(
+        tree_items = self.item_class.objects.get_queryset_descendants(root, include_self=True).filter(
                 level__lt=root[0].level + self.get_level() + 1)
         return tree_items
