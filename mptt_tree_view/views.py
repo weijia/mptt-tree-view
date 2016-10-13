@@ -51,3 +51,9 @@ class TreeView(TemplateView):
         tree_items = self.item_class.objects.get_queryset_descendants(root, include_self=True).filter(
                 level__lt=root[0].level + self.get_level() + 1)
         return tree_items
+
+
+class JsTreeView(TreeView):
+    item_class = None
+    default_level = 2
+    template_name = "mptt_tree_view/jstree_list.html"
