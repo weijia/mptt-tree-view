@@ -20,19 +20,7 @@
         <ul class="tree-root-ul" pk="{{root_pk}}">
             {% recursetree nodes %}
                 <li pk="{{ node.pk }}" item-order="{{ node.get_order }}"
-                    parent="{{ node.parent.pk }}">
-                            {% block item_box %}
-                                {{ node }}
-                            {% endblock %}
-                        <!--</div>-->
-                    {% if not node.is_leaf_node %}
-                        <ul class="" pk="{{node.pk}}">
-                            {{ children }}
-                            {% block parent_node_extra %}
-                            {% endblock %}
-                        </ul>
-                    {% endif %}
-                </li>
+                    parent="{{ node.parent.pk }}" test="true">{{ node|safe }}{% if not node.is_leaf_node %}<ul class="" pk="{{node.pk}}">{{ children }}</ul>{% endif %}</li>
             {% endrecursetree %}
             {% block root_extra %}
             {% endblock %}
@@ -42,30 +30,7 @@
 
 
 <script type="text/javascript" src="{% static 'js/mptt_ajax.js' %}"></script>
-<script>
-  //{{request}}
-  //$(".tree-list").mpttTreeView({});
-  $(function () {
-    $('.tree-list').jstree({
-      "core" : {
-        "check_callback" : true
-      },
-      "checkbox": {
-        //three_state : false, // to avoid that fact that checking a node also check others
-        whole_node : false,  // to avoid checking the box just clicking the node
-        tie_selection : false // for checking without selecting and selecting without checking
-      },
-      "plugins" : [
-        "checkbox",
-        //, "table"
-        "dnd"
-       ]
-    });
-    $('.tree-list').on("select_node.jstree", function (e, data) {
-      var url = "{{request.path}}"+"?root="+$("#"+data.selected[0]).attr("pk");
-      window.location.href = url;
-    });
-    $('.tree-list').jstree("open_all");
-  });
-</script>
+  {% block tree_initiator %}
+    <script type="text/javascript" src="{% static 'js/jstree_list.js' %}"></script>
+  {% endblock %}
 {% endblock %}
