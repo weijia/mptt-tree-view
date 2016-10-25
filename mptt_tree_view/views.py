@@ -19,7 +19,8 @@ class TreeView(TemplateView):
         context = {}
         self.init_tree_items()
         self.get_final_query_set()
-        c = {"user": self.request.user, "nodes": self.tree_items, "root_pk": self.root_pk}
+        c = {"user": self.request.user, "nodes": self.tree_items, "root_pk": self.root_pk,
+             "is_root_node_needed": False}
         c.update(csrf(self.request))
         context.update(c)
         # log = logging.getLogger(__name__)

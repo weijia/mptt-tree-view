@@ -17,6 +17,7 @@
 {% block container %}
 <div class="cf nestable-lists">
     <div class="tree-list">
+        {%if is_root_node_needed%}<ul><li>{%endif%}
         <ul class="tree-root-ul" pk="{{root_pk}}">
             {% recursetree nodes %}
                 <li pk="{{ node.pk }}" item-order="{{ node.get_order }}"
@@ -25,6 +26,7 @@
             {% block root_extra %}
             {% endblock %}
         </ul>
+        {%if is_root_node_needed%}</li></ul>{%endif%}
     </div>
 </div>
 
