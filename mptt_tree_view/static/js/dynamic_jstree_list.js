@@ -10,7 +10,7 @@ $(function () {
           },
           'callback': */
           function(obj, callback){
-            var parent = "None";
+            var parent = rootPk;
             if(obj.id!="#"){
                 parent=obj.id;
             }
@@ -19,9 +19,9 @@ $(function () {
             $.get(dynamicJsTreeUrl, {"parent": parent, "limit":9999}, function(data){
                 var tree_nodes = [];
                 $.each(data.objects, function(key, value){
-                    tree_nodes.push({"id":value.id, "text": value.ufs_url,
+                    tree_nodes.push({"id":value.id, "text": get_node_text(value),
                     'state' : { 'opened' : false}, "children": true});
-                })
+                });
                 callback.call(this, tree_nodes);
             });
           }

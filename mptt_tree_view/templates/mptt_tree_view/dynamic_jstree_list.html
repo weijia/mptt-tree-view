@@ -14,6 +14,11 @@
     <script>
          var dynamicJsTreeUrl = "{{ dynamic_js_tree_url|safe }}";
          var rootPk = "{{ root_pk|safe }}";
+        {% block get_node_text_script %}
+            function get_node_text(tastypie_json_node){
+                return tastypie_json_node.id;
+            }
+        {% endblock %}
     </script>
     <!--<script type="text/javascript" src="{% static 'js/jstree-table/jstreetable.js' %}"></script>-->
 {% endblock %}
