@@ -1,6 +1,9 @@
 $.widget( "mptt.mpttAjax", {
     options: {
         restUrl: "/checklist/rest_api/checklist_tree_item/",
+        errorHandling: function (){
+            alert("mpttAjax data update error");
+        }
     },
     createItemOnServer: function(parentPk, text, itemOrder, callback) {
         $.post(this.options.restUrl, {parent:parentPk, content:text, item_order: itemOrder}, function(result){
@@ -14,7 +17,8 @@ $.widget( "mptt.mpttAjax", {
           type : type,
           contentType : 'application/json',
           processData: false,
-          dataType: 'json'
+          dataType: 'json',
+          error: this.options.errorHandling
         });
     },
 
@@ -29,7 +33,8 @@ $.widget( "mptt.mpttAjax", {
           type : 'PATCH',
           contentType : 'application/json',
           processData: false,
-          dataType: 'json'
+          dataType: 'json',
+          error: this.options.errorHandling
         }).done(function(result){if(callback) callback(result);});
     },
 
