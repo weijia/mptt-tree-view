@@ -16,6 +16,7 @@
 
 {% block container %}
 <div class="cf nestable-lists">
+    {% block tree_list %}
     <div class="tree-list">
         {%if is_root_node_needed%}<ul><li>{%endif%}
         <ul class="tree-root-ul" pk="{{root_pk}}">
@@ -28,6 +29,7 @@
         </ul>
         {%if is_root_node_needed%}</li></ul>{%endif%}
     </div>
+    {% endblock %}
 </div>
 
 
