@@ -16,7 +16,7 @@ class TreeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         # context = super(AddTagTemplateView, self).get_context_data(**kwargs)
-        context = {}
+        context = super(TreeView, self).get_context_data(**kwargs)
         self.init_tree_items()
         self.get_final_query_set()
         c = {"user": self.request.user, "nodes": self.tree_items, "root_pk": self.root_pk,
