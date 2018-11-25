@@ -43,7 +43,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='mptt-tree-view',
     version=version,
-    description=""""View tool for Django MPTT"""",
+    description="""View tool for Django MPTT""",
     long_description=readme + '\n\n' + history,
     author='Richard',
     author_email='richardwangwang@gmail.com',
@@ -53,6 +53,8 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
+        'mptt',
+        'djangoautoconf',
     ],
     license="BSD",
     zip_safe=False,
